@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var scannedCode: String = ""
+    @State private var isShowingScanner = false
+
     var body: some View {
         VStack {
-            // Logo in the center
+            // Logo in the center (round)
             Image("logo") // Replace "logo" with the name of your image
                 .resizable()
                 .scaledToFit()
@@ -19,7 +22,6 @@ struct ContentView: View {
                 .overlay(Circle().stroke(Color.gray, lineWidth: 4)) // Optional: Add a border
                 .shadow(radius: 10) // Optional: Add a shadow
                 .padding(.top, 50)
-                
 
             // Tagline below the logo
             Text("Scan, Analyze. Choose Better")
@@ -27,6 +29,13 @@ struct ContentView: View {
                 .fontWeight(.medium)
                 .foregroundColor(.gray)
                 .padding(.top, 20)
+
+            // Display scanned barcode
+            if !scannedCode.isEmpty {
+                Text("Scanned Code: \(scannedCode)")
+                    .font(.headline)
+                    .padding()
+            }
 
             Spacer() // Pushes content to the top and bottom
 
@@ -44,7 +53,7 @@ struct ContentView: View {
                 }
 
                 Button(action: {
-                    print("Scan tapped!")
+                    isShowingScanner = true // Open the scanner
                 }) {
                     Text("Scan")
                         .padding()
@@ -67,6 +76,9 @@ struct ContentView: View {
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
+        }
+        .sheet(isPresented: $isShowingScanner) {
+            BarcodeScannerView(scannedCode: $scannedCode)
         }
     }
 }
