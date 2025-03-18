@@ -1,26 +1,19 @@
-//
-//  ContentView.swift
-//  BiteSafely
-//
-//  Created by Niral sara on 3/15/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     @State private var scannedCode: String = ""
     @State private var isShowingScanner = false
-
+    
     var body: some View {
         VStack {
             // Logo in the center (round)
-            Image("logo") // Replace "logo" with the name of your image
+            Image("logo")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 150, height: 150)
-                .clipShape(Circle()) // Makes the logo round
-                .overlay(Circle().stroke(Color.gray, lineWidth: 4)) // Optional: Add a border
-                .shadow(radius: 10) // Optional: Add a shadow
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.gray, lineWidth: 4))
+                .shadow(radius: 10)
                 .padding(.top, 50)
 
             // Tagline below the logo
@@ -37,55 +30,39 @@ struct ContentView: View {
                     .padding()
             }
 
-            Spacer() // Pushes content to the top and bottom
+            Spacer()
 
             // 3 buttons at the bottom
             HStack(spacing: 20) {
-                Button(action: {
+                Button("Explore") {
                     print("Explore tapped!")
-                }) {
-                    Text("Explore")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
                 }
+                .buttonStyle(CustomButtonStyle(color: .blue))
 
-                Button(action: {
-                    isShowingScanner = true // Open the scanner
-                }) {
-                    Text("Scan")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                Button("Scan") {
+                    isShowingScanner = true
                 }
+                .buttonStyle(CustomButtonStyle(color: .green))
 
-                Button(action: {
-                    print("Login/Signup tapped!")
-                }) {
-                    Text("Login/Signup")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                Button("Login/Signup") {
+                    print("Login tapped!")
                 }
+                .buttonStyle(CustomButtonStyle(color: .orange))
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
         }
         .sheet(isPresented: $isShowingScanner) {
-            BarcodeScannerView(scannedCode: $scannedCode)
+            ScannerSheet(scannedCode: $scannedCode)
         }
     }
 }
+
+// Wrap BarcodeScannerView in a SwiftUI container
 struct ScannerSheet: View {
     @Binding var scannedCode: String
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body: some View {
         VStack {
             HStack {
@@ -119,6 +96,8 @@ struct ScannerSheet: View {
         .shadow(radius: 10) // Shadow for the entire sheet
     }
 }
+
+// Custom button style for consistent styling
 struct CustomButtonStyle: ButtonStyle {
     var color: Color
 
@@ -133,6 +112,7 @@ struct CustomButtonStyle: ButtonStyle {
             .animation(.spring(), value: configuration.isPressed)
     }
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
