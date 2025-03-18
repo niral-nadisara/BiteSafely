@@ -82,7 +82,57 @@ struct ContentView: View {
         }
     }
 }
+struct ScannerSheet: View {
+    @Binding var scannedCode: String
+    @Environment(\.presentationMode) var presentationMode
 
+    var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss() // Close the sheet
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.title)
+                        .foregroundColor(.gray)
+                }
+                .padding()
+            }
+
+            Text("Scan a Product")
+                .font(.headline)
+                .padding()
+
+            // Wrap BarcodeScannerView in a ZStack to apply modifiers
+            ZStack {
+                Color.clear // Transparent background
+                BarcodeScannerView(scannedCode: $scannedCode)
+            }
+            .frame(height: 300) // Restrict the scanner height
+            .background(Color.white) // Background color for the scanner area
+            .cornerRadius(10) // Rounded corners for the scanner area
+            .padding()
+        }
+        .background(Color.white) // Background color for the entire sheet
+        .cornerRadius(20) // Rounded corners for the entire sheet
+        .shadow(radius: 10) // Shadow for the entire sheet
+    }
+}
+struct CustomButtonStyle: ButtonStyle {
+    var color: Color
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(color)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .animation(.spring(), value: configuration.isPressed)
+    }
+}
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

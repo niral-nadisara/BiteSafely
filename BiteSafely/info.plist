@@ -5,9 +5,9 @@
 	<key>Privacy - Camera Usage Description</key>
 	<string>We need access to your camera to scan barcodes.</string>
 	<key>CFBundleShortVersionString</key>
-	<string></string>
+	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>v1</string>
+	<string>1.0.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.safebites.BiteSafely</string>
 	<key>CFBundleName</key>

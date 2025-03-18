@@ -1,10 +1,3 @@
-//
-//  BarcodeScannerView.swift
-//  BiteSafely
-//
-//  Created by Niral sara on 3/15/25.
-//
-
 import SwiftUI
 import AVFoundation
 
