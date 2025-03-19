@@ -6,6 +6,7 @@ struct ContentView: View {
     @State private var scannedCode: String = ""
     @State private var isShowingScanner = false
     @State private var isShowingAuthSheet = false
+    @State private var useMockScanner = true // Toggle between mock and real scanner
     
     var body: some View {
         VStack {
@@ -46,7 +47,7 @@ struct ContentView: View {
                     isShowingScanner = true
                 }
                 .buttonStyle(CustomButtonStyle(color: .green))
-
+                
                 Button("Login/Signup") {
                     isShowingAuthSheet = true
                 }
@@ -54,12 +55,24 @@ struct ContentView: View {
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
+            
+            // Toggle button at the very bottom
+                            Toggle("Use Mock Scanner", isOn: $useMockScanner)
+                                .padding()
+                                .background(Color(.systemGray6))
+                                .cornerRadius(8)
+                                .padding(.horizontal, 20)
+                                .padding(.bottom, 30)
         }
         .sheet(isPresented: $isShowingScanner) {
-            ScannerSheet(scannedCode: $scannedCode)
-        }
+                if useMockScanner {
+                    MockBarcodeScannerView(scannedCode: $scannedCode)
+                } else {
+                    BarcodeScannerView(scannedCode: $scannedCode)
+                }
+            }
         .sheet(isPresented: $isShowingAuthSheet) {
-                    AuthenticationView()
+            AuthenticationView()
         }
     }
 }
