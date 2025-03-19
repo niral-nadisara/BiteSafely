@@ -138,11 +138,7 @@ struct CustomButtonStyle: ButtonStyle {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+
 struct AuthenticationView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var email = ""
@@ -265,5 +261,11 @@ struct AuthenticationView: View {
         
         // For demo purposes, just dismiss the sheet
         presentationMode.wrappedValue.dismiss()
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
