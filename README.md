@@ -15,9 +15,9 @@
 
 ## Screenshots
 
-| Home Screen | Scanner Screen |
-|-------------|----------------|
-| ![Home Screen](screenshots/home.png) | ![Scanner Screen](screenshots/scanner.png) |
+| Home Screen | Scanner Screen | Login/Signup Screen |
+|-------------|----------------|----------------|
+| ![Home Screen](screenshots/welcome-screen.png) | ![Scanner Screen](screenshots/barcode-scan-window.png) | ![Login/Signup Screen](screenshots/login-signup-screen.png) |
 
 ---
 
