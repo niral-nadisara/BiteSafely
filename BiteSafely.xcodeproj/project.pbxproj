@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		542CBEC82D8A479C0017CBBD /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 542CBEC72D8A479C0017CBBD /* GoogleSignIn */; };
+		542CBECA2D8A479C0017CBBD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 542CBEC92D8A479C0017CBBD /* GoogleSignInSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		54CECF8D2D86080B001FED7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				542CBEC82D8A479C0017CBBD /* GoogleSignIn in Frameworks */,
+				542CBECA2D8A479C0017CBBD /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = BiteSafely;
 			packageProductDependencies = (
+				542CBEC72D8A479C0017CBBD /* GoogleSignIn */,
+				542CBEC92D8A479C0017CBBD /* GoogleSignInSwift */,
 			);
 			productName = BiteSafely;
 			productReference = 54CECF762D86080A001FED7D /* BiteSafely.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = 54CECF6D2D86080A001FED7D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				542CBEC62D8A479C0017CBBD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 54CECF772D86080A001FED7D /* Products */;
 			projectDirPath = "";
@@ -392,6 +404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BiteSafely/Preview Content\"";
+				DEVELOPMENT_TEAM = 5T8S52R3SU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -429,6 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BiteSafely/Preview Content\"";
+				DEVELOPMENT_TEAM = 5T8S52R3SU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -583,6 +597,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		542CBEC62D8A479C0017CBBD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		542CBEC72D8A479C0017CBBD /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 542CBEC62D8A479C0017CBBD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		542CBEC92D8A479C0017CBBD /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 542CBEC62D8A479C0017CBBD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 54CECF6E2D86080A001FED7D /* Project object */;
 }
