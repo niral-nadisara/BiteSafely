@@ -43,7 +43,7 @@
 ```bash
 git clone https://github.com/your-username/BiteSafely.git
 cd BiteSafely
-
+```
 ### 2. Open the Project in Xcode
 
 Open BiteSafely.xcodeproj in Xcode.
@@ -51,38 +51,29 @@ Open BiteSafely.xcodeproj in Xcode.
 
 Select a simulator or connect a physical device.
 Click the Run button (or press Cmd + R) to build and run the app.
-Usage
-
-Launch the App:
+## Usage
+---
+1. Launch the App:
 Open the app on your iOS device or simulator.
-Scan a Barcode:
+2. Scan a Barcode:
 Tap the Scan button to open the barcode scanner.
 Point the camera at a barcode to scan it.
-View Scanned Code:
+3. View Scanned Code:
 The scanned barcode will be displayed on the home screen.
-Explore or Login:
+4. Explore or Login:
 Use the Explore and Login/Signup buttons to navigate through the app.
-File Structure
+---
 
-BiteSafely/
-├── BiteSafely/
-│   ├── ContentView.swift          # Main view of the app
-│   ├── BarcodeScannerView.swift   # Barcode scanner implementation
-│   ├── ScannerSheet.swift         # Scanner sheet UI
-│   ├── CustomButtonStyle.swift    # Custom button style
-│   └── Assets.xcassets/           # App assets (e.g., logo)
-├── BiteSafely.xcodeproj           # Xcode project file
-└── README.md                      # Project documentation
-
-License
+## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Acknowledgments
+## Acknowledgments
 
 Apple Documentation: For guidance on SwiftUI and AVFoundation.
 Stack Overflow: For troubleshooting and community support.
-Contact
+
+## Contact
 
 For questions or feedback, feel free to reach out:
 
