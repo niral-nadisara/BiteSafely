@@ -6,6 +6,7 @@ struct ContentView: View {
     @State private var scannedCode: String = ""
     @State private var isShowingScanner = false
     @State private var isShowingAuthSheet = false
+    @State private var useMockScanner = true // Toggle between mock and real scanner
     
     var body: some View {
         VStack {
@@ -42,11 +43,17 @@ struct ContentView: View {
                 }
                 .buttonStyle(CustomButtonStyle(color: .blue))
 
-                Button("Scan") {
+                Button(action: {
                     isShowingScanner = true
+                }) {
+                    Image(systemName: "barcode.viewfinder") // SF Symbol for barcode scanner
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.green)
+                        .cornerRadius(10)
                 }
-                .buttonStyle(CustomButtonStyle(color: .green))
-
+                
                 Button("Login/Signup") {
                     isShowingAuthSheet = true
                 }
@@ -54,12 +61,24 @@ struct ContentView: View {
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
+            
+            // Toggle button at the very bottom
+                            Toggle("Use Mock Scanner", isOn: $useMockScanner)
+                                .padding()
+                                .background(Color(.systemGray6))
+                                .cornerRadius(8)
+                                .padding(.horizontal, 20)
+                                .padding(.bottom, 30)
         }
         .sheet(isPresented: $isShowingScanner) {
-            ScannerSheet(scannedCode: $scannedCode)
-        }
+                if useMockScanner {
+                    MockBarcodeScannerView(scannedCode: $scannedCode)
+                } else {
+                    BarcodeScannerView(scannedCode: $scannedCode)
+                }
+            }
         .sheet(isPresented: $isShowingAuthSheet) {
-                    AuthenticationView()
+            AuthenticationView()
         }
     }
 }
@@ -119,11 +138,7 @@ struct CustomButtonStyle: ButtonStyle {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+
 struct AuthenticationView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var email = ""
@@ -246,5 +261,11 @@ struct AuthenticationView: View {
         
         // For demo purposes, just dismiss the sheet
         presentationMode.wrappedValue.dismiss()
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
