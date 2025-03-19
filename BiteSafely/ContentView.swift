@@ -43,10 +43,16 @@ struct ContentView: View {
                 }
                 .buttonStyle(CustomButtonStyle(color: .blue))
 
-                Button("Scan") {
+                Button(action: {
                     isShowingScanner = true
+                }) {
+                    Image(systemName: "barcode.viewfinder") // SF Symbol for barcode scanner
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.green)
+                        .cornerRadius(10)
                 }
-                .buttonStyle(CustomButtonStyle(color: .green))
                 
                 Button("Login/Signup") {
                     isShowingAuthSheet = true
