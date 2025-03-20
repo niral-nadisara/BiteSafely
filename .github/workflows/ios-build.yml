@@ -1,0 +1,43 @@
+name: iOS Build & Test
+
+on:
+  push:
+    branches:
+      - main  # Run when code is pushed to main
+  pull_request:
+    branches:
+      - main  # Run on pull requests to main
+
+jobs:
+  build:
+    runs-on: macos-latest  # Uses a macOS runner with Xcode pre-installed
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Pulls the latest code from the repo
+
+      - name: Set up Ruby & Install Bundler
+        run: |
+          brew install ruby
+          gem install bundler
+
+      - name: Install CocoaPods Dependencies
+        run: |
+          cd ios
+          pod install
+
+      - name: Build the iOS App
+        run: |
+          xcodebuild clean build \
+            -workspace ios/BiteSafely.xcworkspace \
+            -scheme BiteSafely \
+            -sdk iphoneos \
+            -configuration Release | xcpretty
+
+      - name: Run Tests
+        run: |
+          xcodebuild test \
+            -workspace ios/BiteSafely.xcworkspace \
+            -scheme BiteSafely \
+            -destination "platform=iOS Simulator,name=iPhone 14" | xcpretty
+
