@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main  # Run when code is pushed to main
+      - manvi-docker-setup
   pull_request:
     branches:
       - main  # Run on pull requests to main
-
+      - manvi-docker-setup
 jobs:
   build:
     runs-on: macos-latest  # Uses a macOS runner with Xcode pre-installed
